@@ -20,8 +20,9 @@ beforeEach(async () => {
 		data: evm.bytecode.object,
 		arguments: [web3.utils.stringToHex('hi')] // 初始化参数 hi
 	}).send({ from: accounts[0], gas: '1000000', });
+	
 
-	//console.log(inbox)
+	console.log('web3.utils.stringToHex()', web3.utils.stringToHex('hi'))
 })
 
 
@@ -39,5 +40,16 @@ describe('Inbox', () => {
 		var convertMessage = web3.utils.hexToString(message)
 		assert.equal(convertMessage, 'hi');
 
+	})
+
+	it('can change the message to bye', async() => {
+		// 修改合约data, transtraction 失败了会报错
+		await inbox.methods.setMessage(web3.utils.stringToHex('bye')).send({
+			// who pay
+			from: accounts[0],
+		});
+		const message = await inbox.methods.message().call();
+		var convertMessage = web3.utils.hexToString(message)
+		assert.equal(convertMessage, 'bye');
 	})
 })

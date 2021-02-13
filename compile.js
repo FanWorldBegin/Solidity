@@ -41,3 +41,6 @@ var output = JSON.parse(solc.compile(JSON.stringify(input)));
 
 //导出
 module.exports =  output.contracts['inbox.sol'].InBox;
+
+
+// interface: abi  bytecode:  evm.bytecode.object

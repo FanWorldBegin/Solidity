@@ -25,8 +25,6 @@ contract InBox {
         b - a;
         a * b;
         a = b;
-        
-        
     }
     
     // Constructor code is only run when the contract
